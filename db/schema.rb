@@ -12,9 +12,10 @@
 
 ActiveRecord::Schema.define(version: 20170503200901) do
 
-  create_table "articles", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "price"
     t.date "published_on"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

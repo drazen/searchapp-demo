@@ -8,7 +8,7 @@ https://github.com/elasticsearch/elasticsearch-rails/tree/master/elasticsearch-r
 
 ## [1] Basic
 
-The `basic` version provides a simple integration for a simple Rails model, `Article`, showing how
+The `basic` version provides a simple integration for a simple Rails model, `Product`, showing how
 to include the search engine support in your model, automatically index changes to records,
 and use a form to perform simple search require 'requests.'
 

@@ -1,29 +1,24 @@
+puts "Deleting all products..."
+Product.delete_all
 
-contents = [
-'Lorem ipsum dolor sit amet.',
-'Consectetur adipisicing elit, sed do eiusmod tempor incididunt.',
-'Labore et dolore magna aliqua.',
-'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
-'Excepteur sint occaecat cupidatat non proident.'
-]
+i = 0
+length = 5
 
-puts "Deleting all articles..."
-Article.delete_all
+while i < ENV['MILLION'].to_i * 1000000 do
+  print "Generating products..."
 
-unless ENV['COUNT']
-
-  puts "Creating articles..."
-  %w[ One Two Three Four Five ].each_with_index do |title, i|
-    Article.create title: title, content: contents[i], published_on: i.days.ago.utc
+  random1 = (0...length).map { (65 + rand(26)).chr }.join
+  random2 = (0...length).map { (65 + rand(26)).chr }.join
+  random3 = (0...length).map { (65 + rand(26)).chr }.join
+  if i % 100 == 0
+    random3 = ENV['WORD']
+    print "#{ENV['WORD'].pluralize} be here!"
   end
+  product_name = random1 + " " + random2 + " " + random3
+  product_description = rand(5..100).times.reduce(" ") {|desc| desc << (0...length).map { (65 + rand(26)).chr }.join }
+  product_price = rand(1000)
 
-else
+  Product.create name: product_name, description: product_description, price: product_price, published_on: rand(5).days.ago.utc
 
-  print "Generating articles..."
-  (1..ENV['COUNT'].to_i).each_with_index do |title, i|
-    Article.create title: "Title #{title}", content: 'Lorem ipsum dolor', published_on: i.days.ago.utc
-    print '.' if i % ENV['COUNT'].to_i/10 == 0
-  end
-  puts "\n"
-
+  i += 1
 end
